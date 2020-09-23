@@ -2,7 +2,7 @@ package main
 
 import (
 	"k8s.io/client-go/kubernetes"
-	"k8s.io/client-go/tools/clientcmd"
+	"k8s.io/client-go/rest"
 	"log"
 	"net/http"
 )
@@ -17,7 +17,7 @@ func main() {
 	events := make(chan *ChangeEvent)
 	hub := NewHub()
 
-	config, _ := clientcmd.BuildConfigFromFlags("", "")
+	config, _ := rest.InClusterConfig()
 	client, _ := kubernetes.NewForConfig(config)
 
 	watcher := &DeploymentWatcher{Events: events, Client: client}
