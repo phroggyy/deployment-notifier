@@ -44,4 +44,11 @@ func (w *DeploymentWatcher) Run() {
 			}
 		},
 	})
+
+	stop := make(chan struct{})
+	defer close(stop)
+	informerFactory.Start(stop)
+	for {
+		time.Sleep(time.Second)
+	}
 }
