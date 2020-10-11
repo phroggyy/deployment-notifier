@@ -1,7 +1,7 @@
 # Deployment Notifier
 
 The deployment notifier runs a WebSocket server that will notify
-clients of when a deployment (determined by its label).
+clients of when a deployment (determined by its label) is updated.
 
 The output includes a version (the Kubernetes revision), and availability
 expressed as `readyReplicas / desiredReplicas`.
