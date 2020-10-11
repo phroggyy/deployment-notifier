@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-notifier
+  labels:
+    app: deploy-notifier
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: deploy-notifier
+      labels:
+        app: deploy-notifier
+    spec:
+      containers:
+        - name: deploy-notifier
+          image: phroggyy/deploy-notifier:latest
+          imagePullPolicy: IfNotPresent
+          args:
+            - "-l"
+            - "app=nginx"
+          ports:
+            - containerPort: 8080
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: deploy-notifier
